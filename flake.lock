@@ -56,6 +56,19 @@
         "type": "github"
       }
     },
+    "lair": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1716142511,
+        "narHash": "sha256-yt1e+SashrgikcdyJE08WH554oXR4BIDOrF9e1sDKRE=",
+        "path": "/Users/jost/Desktop/holochain/holonix-lair",
+        "type": "path"
+      },
+      "original": {
+        "path": "/Users/jost/Desktop/holochain/holonix-lair",
+        "type": "path"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1715961556,
@@ -88,6 +101,7 @@
       "inputs": {
         "crane": "crane",
         "flake-parts": "flake-parts",
+        "lair": "lair",
         "nixpkgs": "nixpkgs",
         "rust-overlay": "rust-overlay"
       }
