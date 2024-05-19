@@ -68,9 +68,8 @@
 
             # nativeBuildInputs = [ pkgs.perl pkgs.pkg-config ] ++ pkgs.lib.optionals pkgs.stdenv.isDarwin
             #   (with pkgs; [ xcbuild libiconv ]);
-            buildInputs = [ ] ++ (pkgs.lib.optionals pkgs.stdenv.isDarwin [
+            buildInputs = [ pkgs.perl ] ++ (pkgs.lib.optionals pkgs.stdenv.isDarwin [
               pkgs.libiconv
-              pkgs.perl
               # pkgs.darwin.apple_sdk.frameworks.Security
               # pkgs.darwin.apple_sdk.frameworks.AppKit
               # pkgs.darwin.apple_sdk.frameworks.CoreFoundation
