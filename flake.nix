@@ -50,6 +50,12 @@
             inherit holochain;
             inherit rust;
           };
+
+          devShells = {
+            default = pkgs.mkShell {
+              packages = [ holochain rust ];
+            };
+          };
         };
     };
 }
