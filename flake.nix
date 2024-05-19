@@ -21,7 +21,8 @@
 
     # lair keystore
     lair = {
-      url = "github:jost-s/holonix-lair";
+      url = "github:holochain/lair";
+      # url = "github:jost-s/holonix-lair";
       flake = false;
     };
   };
@@ -43,7 +44,8 @@
               targets = [ "wasm32-unknown-unknown" ];
             });
 
-          craneLib = crane.mkLib pkgs;
+          # use rust toolchain specified above
+          craneLib = (crane.mkLib pkgs).overrideToolchain rust;
 
           holochain = craneLib.buildPackage {
             pname = "holochain";
@@ -55,6 +57,27 @@
             pname = "lair-keystore";
             version = "workspace";
             src = craneLib.cleanCargoSource lair;
+
+            # buildInputs = [ pkgs.openssl ] ++ (pkgs.lib.optionals pkgs.stdenv.isDarwin
+            #   (with pkgs.darwin.apple_sdk_11_0.frameworks; [
+            #     AppKit
+            #     CoreFoundation
+            #     CoreServices
+            #     Security
+            #   ]));
+
+            # nativeBuildInputs = [ pkgs.perl pkgs.pkg-config ] ++ pkgs.lib.optionals pkgs.stdenv.isDarwin
+            #   (with pkgs; [ xcbuild libiconv ]);
+            buildInputs = [ ] ++ (pkgs.lib.optionals pkgs.stdenv.isDarwin [
+              pkgs.libiconv
+              pkgs.perl
+              # pkgs.darwin.apple_sdk.frameworks.Security
+              # pkgs.darwin.apple_sdk.frameworks.AppKit
+              # pkgs.darwin.apple_sdk.frameworks.CoreFoundation
+              # pkgs.darwin.apple_sdk.frameworks.CoreServices
+              # pkgs.xcbuild
+              # pkgs.pkg-config
+            ]);
           };
         in
         {

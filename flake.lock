@@ -59,14 +59,17 @@
     "lair": {
       "flake": false,
       "locked": {
-        "lastModified": 1716142511,
-        "narHash": "sha256-yt1e+SashrgikcdyJE08WH554oXR4BIDOrF9e1sDKRE=",
-        "path": "/Users/jost/Desktop/holochain/holonix-lair",
-        "type": "path"
+        "lastModified": 1711469185,
+        "narHash": "sha256-ohlEaOY/aymNiYU57HnSNnoJqhQGtIho60CDSKJrCSY=",
+        "owner": "holochain",
+        "repo": "lair",
+        "rev": "e29058b3dacb3a786a39f89cf6d4f2322fa7113f",
+        "type": "github"
       },
       "original": {
-        "path": "/Users/jost/Desktop/holochain/holonix-lair",
-        "type": "path"
+        "owner": "holochain",
+        "repo": "lair",
+        "type": "github"
       }
     },
     "nixpkgs": {
