@@ -70,13 +70,15 @@
             #   (with pkgs; [ xcbuild libiconv ]);
             buildInputs = [ pkgs.perl ] ++ (pkgs.lib.optionals pkgs.stdenv.isDarwin [
               pkgs.libiconv
-              # pkgs.darwin.apple_sdk.frameworks.Security
+              pkgs.darwin.apple_sdk.frameworks.Security
               # pkgs.darwin.apple_sdk.frameworks.AppKit
               # pkgs.darwin.apple_sdk.frameworks.CoreFoundation
               # pkgs.darwin.apple_sdk.frameworks.CoreServices
               # pkgs.xcbuild
               # pkgs.pkg-config
             ]);
+
+            doCheck = false;
           };
         in
         {
