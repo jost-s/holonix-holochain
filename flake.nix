@@ -53,33 +53,27 @@
             src = craneLib.cleanCargoSource (craneLib.path ./.);
           };
 
-          lair-keystore = craneLib.buildPackage {
-            pname = "lair-keystore";
-            version = "workspace";
-            src = craneLib.cleanCargoSource lair;
+          lair-keystore =
+            let
+              sqlFilter = path: _type: builtins.match ".*(sql|md)$" path != null;
+              sqlOrCargo = path: type:
+                (sqlFilter path type) || (craneLib.filterCargoSources path type);
+            in
+            craneLib.buildPackage {
+              pname = "lair-keystore";
+              version = "workspace";
+              src = pkgs.lib.cleanSourceWith {
+                src = lair;
+                filter = sqlOrCargo;
+              };
 
-            # buildInputs = [ pkgs.openssl ] ++ (pkgs.lib.optionals pkgs.stdenv.isDarwin
-            #   (with pkgs.darwin.apple_sdk_11_0.frameworks; [
-            #     AppKit
-            #     CoreFoundation
-            #     CoreServices
-            #     Security
-            #   ]));
+              buildInputs = [ pkgs.perl ] ++ (pkgs.lib.optionals pkgs.stdenv.isDarwin [
+                pkgs.libiconv
+                pkgs.darwin.apple_sdk.frameworks.Security
+              ]);
 
-            # nativeBuildInputs = [ pkgs.perl pkgs.pkg-config ] ++ pkgs.lib.optionals pkgs.stdenv.isDarwin
-            #   (with pkgs; [ xcbuild libiconv ]);
-            buildInputs = [ pkgs.perl ] ++ (pkgs.lib.optionals pkgs.stdenv.isDarwin [
-              pkgs.libiconv
-              pkgs.darwin.apple_sdk.frameworks.Security
-              # pkgs.darwin.apple_sdk.frameworks.AppKit
-              # pkgs.darwin.apple_sdk.frameworks.CoreFoundation
-              # pkgs.darwin.apple_sdk.frameworks.CoreServices
-              # pkgs.xcbuild
-              # pkgs.pkg-config
-            ]);
-
-            doCheck = false;
-          };
+              doCheck = false;
+            };
         in
         {
           packages = {
