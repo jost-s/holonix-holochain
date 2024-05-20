@@ -10,8 +10,8 @@ jobs:
   build-lair:
     strategy:
       matrix:
-        os: [ubuntu-latest]
-      # fail-fast: false
+        os: [ubuntu-latest, macos-latest]
+      fail-fast: false
 
     runs-on: ${{ matrix.os }}
 
