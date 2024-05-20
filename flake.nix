@@ -66,13 +66,19 @@
                 src = lair;
                 filter = sqlOrCargo;
               };
-
-              buildInputs = [ pkgs.perl ] ++ (pkgs.lib.optionals pkgs.stdenv.isDarwin [
+              # perl needed for openssl on all platforms
+              buildInputs = [ pkgs.perl ]
+                ++ (pkgs.lib.optionals pkgs.stdenv.isDarwin [
+                # additional packages needed for darwin platforms
                 pkgs.libiconv
                 pkgs.darwin.apple_sdk.frameworks.Security
+                # additional packages needed for darwin platforms on x86_64
+                pkgs.darwin.apple_sdk.frameworks.AppKit
+                pkgs.darwin.apple_sdk.frameworks.CoreFoundation
+                pkgs.darwin.apple_sdk.frameworks.CoreServices
+                pkgs.xcbuild
+                pkgs.pkg-config
               ]);
-
-              doCheck = false;
             };
         in
         {
