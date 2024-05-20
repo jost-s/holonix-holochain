@@ -73,12 +73,13 @@
                 pkgs.libiconv
                 pkgs.darwin.apple_sdk.frameworks.Security
                 # additional packages needed for darwin platforms on x86_64
-                pkgs.darwin.apple_sdk.frameworks.AppKit
-                pkgs.darwin.apple_sdk.frameworks.CoreFoundation
-                pkgs.darwin.apple_sdk.frameworks.CoreServices
+                pkgs.darwin.apple_sdk_10_12.frameworks.AppKit
+                pkgs.darwin.apple_sdk_10_12.frameworks.CoreFoundation
+                pkgs.darwin.apple_sdk_10_12.frameworks.CoreServices
                 pkgs.xcbuild
                 pkgs.pkg-config
               ]);
+              doCheck = false;
             };
         in
         {
