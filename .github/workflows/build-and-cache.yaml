@@ -10,8 +10,9 @@ jobs:
   build-holochain:
     strategy:
       matrix:
-        os: [macos-latest]
+        os: [ubuntu-latest]
         # os: [ubuntu-latest, macos-latest, macos-13]
+        # holochain-version: [main, main-0.2, main-0.3]
       fail-fast: false
 
     runs-on: ${{ matrix.os }}
@@ -35,30 +36,29 @@ jobs:
         if: failure()
         uses: mxschmitt/action-tmate@v3
 
-  build-lair:
-    strategy:
-      matrix:
-        os: [macos-13]
-        # os: [ubuntu-latest, macos-latest, macos-13]
-      fail-fast: false
+  # build-lair:
+  #   strategy:
+  #     matrix:
+  #       os: [ubuntu-latest, macos-latest, macos-13]
+  #     fail-fast: false
 
-    runs-on: ${{ matrix.os }}
+  #   runs-on: ${{ matrix.os }}
 
-    steps:
-      - name: Print platform information
-        run: uname -ms
+  #   steps:
+  #     - name: Print platform information
+  #       run: uname -ms
 
-      - name: Check out source code
-        uses: actions/checkout@v4
+  #     - name: Check out source code
+  #       uses: actions/checkout@v4
 
-      - name: Install nix
-        uses: cachix/install-nix-action@v25
-        with:
-          install_url: https://releases.nixos.org/nix/nix-2.18.0/install
+  #     - name: Install nix
+  #       uses: cachix/install-nix-action@v25
+  #       with:
+  #         install_url: https://releases.nixos.org/nix/nix-2.18.0/install
 
-      - name: Build nix package
-        run: nix build -L .#lair-keystore
+  #     - name: Build nix package
+  #       run: nix build -L .#lair-keystore
 
-      - name: Setup tmate session
-        if: failure()
-        uses: mxschmitt/action-tmate@v3
+  #     - name: Setup tmate session
+  #       if: failure()
+  #       uses: mxschmitt/action-tmate@v3
