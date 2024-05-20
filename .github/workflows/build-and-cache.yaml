@@ -16,6 +16,9 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
+      - name: print platform information
+        run: uname -ms
+
       - name: check out source code
         uses: actions/checkout@v4
 
@@ -24,5 +27,8 @@ jobs:
         with:
           install_url: https://releases.nixos.org/nix/nix-2.18.0/install
 
-      - name: build nix package
-        run: nix build -L .#lair-keystore
+      - name: Setup tmate session
+        uses: mxschmitt/action-tmate@v3
+
+      # - name: build nix package
+      #   run: nix build -L .#lair-keystore
