@@ -56,7 +56,23 @@
         "type": "github"
       }
     },
-    "lair": {
+    "holochain-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1716230195,
+        "narHash": "sha256-sKUZ/F4g8FdYZugrd1/s9EeD2jMD5oL32RFj3rSPKOM=",
+        "owner": "holochain",
+        "repo": "holochain",
+        "rev": "2e73efaaab45cdc3b49fe29fb57e3a414e04ac46",
+        "type": "github"
+      },
+      "original": {
+        "owner": "holochain",
+        "repo": "holochain",
+        "type": "github"
+      }
+    },
+    "lair-keystore-src": {
       "flake": false,
       "locked": {
         "lastModified": 1711469185,
@@ -104,7 +120,8 @@
       "inputs": {
         "crane": "crane",
         "flake-parts": "flake-parts",
-        "lair": "lair",
+        "holochain-src": "holochain-src",
+        "lair-keystore-src": "lair-keystore-src",
         "nixpkgs": "nixpkgs",
         "rust-overlay": "rust-overlay"
       }
