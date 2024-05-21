@@ -10,7 +10,7 @@ jobs:
   build-holochain:
     strategy:
       matrix:
-        os: [ubuntu-latest]
+        os: [macos-13]
         # os: [ubuntu-latest, macos-latest, macos-13]
         # holochain-version: [main, main-0.2, main-0.3]
       fail-fast: false
@@ -23,6 +23,7 @@ jobs:
 
       - name: Check out source code
         uses: actions/checkout@v4
+        # with:
 
       - name: Install nix
         uses: cachix/install-nix-action@v25
