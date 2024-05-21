@@ -11,7 +11,6 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, macos-13]
-        # holochain-version: [main, main-0.2, main-0.3]
       fail-fast: false
 
     runs-on: ${{ matrix.os }}
@@ -22,8 +21,6 @@ jobs:
 
       - name: Check out source code
         uses: actions/checkout@v4
-        # with:
-        #   ref: ${{ matrix.holochain-version }}
 
       - name: Install nix
         uses: cachix/install-nix-action@v25
@@ -44,7 +41,6 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest, macos-13]
-        # lair-version: [main, main-0.2, main-0.3]
       fail-fast: false
 
     runs-on: ${{ matrix.os }}
@@ -55,8 +51,6 @@ jobs:
 
       - name: Check out source code
         uses: actions/checkout@v4
-        # with:
-        #   ref: ${{ matrix.lair-version }}
 
       - name: Install nix
         uses: cachix/install-nix-action@v25
